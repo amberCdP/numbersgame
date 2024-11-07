@@ -12,7 +12,7 @@ function getPlayerGuess() {
         } else if (!isNaN(playerGuess) && playerGuess.trim() !== "" && Number.isInteger(parseFloat(playerGuess)) && playerGuess >= 1 && playerGuess <= 100) {
             return parseInt(playerGuess, 10);
         }
-        alert("Can you not read? Guess a number between 1 and 100, or type 'bye' to exit...")
+        alert("Can you not read? Guess a number between 1 and 100, or type 'bye' to exit...");
     }
 }
 
@@ -25,6 +25,11 @@ function checkGuess(randomNumber, playerGuess) {
         return "Victory!";
     }
 }
+
+function calculateScore(attempts) {
+    return Math.max(100 - (attempts * 10), 0); 
+}
+
 
 function game() {
     let attempts = 0;
@@ -41,7 +46,8 @@ function game() {
         const comparisson = checkGuess(playerNumber, correctNumber);
         alert(comparisson);
         if (comparisson === "Victory!") {
-            alert(`Congrats! You have guessed the correct number in ${attempts} attempts! Refresh the page to start over.`);
+            const score = calculateScore(attempts);
+            alert(`Congrats! You have guessed the correct number in ${attempts} attempts!\nYour score is: ${score}\nRefresh the page to start over.`);
             break;
         } else {
             alert(`Try again! Attempts left: ${maxAttempts - attempts}`);
@@ -50,7 +56,7 @@ function game() {
 
     if (attempts === maxAttempts) {
         alert(`Defeat! You have used all ${maxAttempts} attempts. The correct answer was ${correctNumber}. Refresh the page to start over or give up.`);
-    }
+    }  
     return;
 }
 
