@@ -16,6 +16,15 @@ function getPlayerGuess() {
     }
 }
 
+function checkGuess(randomNumber, playerGuess) {
+    if (randomNumber > playerGuess) {
+        return "That's too high!";
+    } else if (randomNumber < playerGuess) {
+        return "That's too low!";
+    } else {
+        return "Victory!";
+    }
+}
 
 
 
