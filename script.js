@@ -26,5 +26,36 @@ function checkGuess(randomNumber, playerGuess) {
     }
 }
 
+function game() {
+    let attempts = 0;
+    const maxAttempts = 10;
+    const correctNumber = generateRandomNumber();
+    while (attempts < maxAttempts) {
+        const playerNumber = getPlayerGuess();
+        if (playerNumber === "bye") {
+            alert("You have chosen to exit the game. If you want to play again, make sure to refresh the page!");
+            return;
+        }
+        attempts++;
+
+        const comparisson = checkGuess(playerNumber, correctNumber);
+        alert(comparisson);
+        if (comparisson === "Victory!") {
+            alert(`Congrats! You have guessed the correct number in ${attempts} attempts! Refresh the page to start over.`);
+            break;
+        } else {
+            alert(`Try again! Attempts left: ${maxAttempts - attempts}`);
+        }
+    }
+
+    if (attempts === maxAttempts) {
+        alert(`Defeat! You have used all ${maxAttempts} attempts. The correct answer was ${correctNumber}. Refresh the page to start over or give up.`);
+    }
+    return;
+}
+
+alert("Welcome to the Number Guessing game! Let's play!");
+game();
+
 
 
